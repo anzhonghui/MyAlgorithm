@@ -15,6 +15,7 @@ public class ImplementStrMethod {
 	}
 
 	/**
+	 * 匹配字符串
 	 * Input: haystack = "hello", needle = "ll" Output: 2
 	 * 
 	 * @param haystack
