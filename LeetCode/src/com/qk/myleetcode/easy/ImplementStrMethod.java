@@ -15,19 +15,18 @@ public class ImplementStrMethod {
 	}
 
 	/**
-	 * 匹配字符串
-	 * Input: haystack = "hello", needle = "ll" Output: 2
+	 * 匹配字符串 Input: haystack = "hello", needle = "ll" Output: 2
 	 * 
 	 * @param haystack
 	 * @param needle
 	 * @return
 	 */
 	public int strStr(String haystack, String needle) {
-		
-		if("".equals(needle)) {
+
+		if ("".equals(needle)) {
 			return 0;
 		}
-		
+
 		if (haystack == null || haystack.length() == 0 || "".equals(haystack)) {
 			return -1;
 		}
@@ -42,15 +41,13 @@ public class ImplementStrMethod {
 				i -= j;
 				j = 0;
 			}
-			
+
 			i++;
-			
-			if(j == needle.length()) {
+			if (j == needle.length()) {
 				return i - j;
 			}
-			
 		}
-		
+
 		return -1;
 	}
 }
