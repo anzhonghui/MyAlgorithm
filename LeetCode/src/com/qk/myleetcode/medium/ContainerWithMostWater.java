@@ -21,6 +21,11 @@ public class ContainerWithMostWater {
 		System.out.println(maxArea(new int[] { 2, 3, 2 }));
 	}
 
+	/**
+	 * 思路（参考）：通过移动坐标，剔除前后比较小的数值
+	 * @param height
+	 * @return
+	 */
 	public int maxArea(int[] height) {
 
 		int maxArea = 0;
