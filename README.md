@@ -42,3 +42,11 @@
 
 #### 29. Divide Two Integers
 
+#### 31. Next Permutation    
+
+#### 33. Search in Rotated Sorted Array    
+
+#### 34. Find First and Last Position of Element in Sorted Array    
+
+#### 36. Valid Sudoku
+
