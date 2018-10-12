@@ -57,3 +57,11 @@
 #### 43. Multiply Strings    
 
 #### 46. Permutations
+
+#### 47. Permutations II    
+
+#### 48. Rotate Image    
+
+#### 49. Group Anagrams    
+
+#### 50. Pow(x, n)
