@@ -11,6 +11,8 @@
 #### 8. String to Integer (atoi)
 #### 9. Palindrome Number
 
+#### 10. Regular Expression Matching    
+
 #### 11. Container With Most Water
 
 #### 12. Integer to Roman
@@ -34,6 +36,8 @@
 #### 21. Merge Two Sorted Lists
 
 #### 22. Generate Parentheses
+
+#### 23. Merge k Sorted Lists
 
 #### 24. Swap Nodes in Pairs
 
