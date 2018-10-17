@@ -29,6 +29,64 @@ public class MergeKSortedLists {
 		System.out.println(mergeKLists.toString());
 	}
 
+	public ListNode mergeKLists(ListNode[] lists) {
+		if (lists == null || lists.length == 0)
+			return null;
+		return helper(lists, 0, lists.length - 1);
+	}
+
+	/**
+	 * 通过嵌套递归，一次比对两个节点，比对完成的两个节点作为一个新节点，就行与其他节点进行对比
+	 * L1:
+	 * ListNode [val=1, next=ListNode [val=4, next=ListNode [val=5, next=null]]]
+	 * L2:
+	 * ListNode [val=1, next=ListNode [val=3, next=ListNode [val=4, next=null]]]
+	 * L1:(为上面两个节点比较完成后合并的节点)
+	 * ListNode [val=1, next=ListNode [val=1, next=ListNode [val=3, next=ListNode [val=4, next=ListNode [val=4, next=ListNode [val=5, next=null]]]]]]
+	 * L2:
+	 * ListNode [val=2, next=ListNode [val=6, next=null]]	
+	 * L1:(上面两个节点合并后的节点)
+	 * ListNode [val=1, next=ListNode [val=1, next=ListNode [val=2, next=ListNode [val=3, next=ListNode [val=4, next=ListNode [val=4, next=ListNode [val=5, next=ListNode [val=6, next=null]]]]]]]]
+	 * @param lists
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	private ListNode helper(ListNode[] lists, int start, int end) {
+		if (start > end)
+			return null;
+		if (start == end)
+			return lists[start];
+		int mid = (start + end) / 2;
+		// 嵌套递归
+		return merge(helper(lists, start, mid), helper(lists, mid + 1, end));
+	}
+
+	private ListNode merge(ListNode l1, ListNode l2) {
+		if (l1 == null)
+			return l2;
+		if (l2 == null)
+			return l1;
+		ListNode dummy = new ListNode(0);
+		ListNode cur = dummy;
+		while (l1 != null && l2 != null) {
+			if (l1.val < l2.val) {
+				cur.next = l1;
+				l1 = l1.next;
+				cur = cur.next;
+			} else {
+				cur.next = l2;
+				l2 = l2.next;
+				cur = cur.next;
+			}
+		}
+		if (l1 == null)
+			cur.next = l2;
+		if (l2 == null)
+			cur.next = l1;
+		return dummy.next;
+	}
+
 	/**
 	 * Input:
 	 * [
@@ -37,10 +95,11 @@ public class MergeKSortedLists {
 	 *   2->6
 	 * ]
 	 * Output: 1->1->2->3->4->4->5->6
+	 * @description 采用优先队列的方式，比较简单，容易理解
 	 * @param lists
 	 * @return
 	 */
-	public ListNode mergeKLists(ListNode[] lists) {
+	public ListNode mergeKListsByPriorityQueue(ListNode[] lists) {
 		if (lists == null || lists.length == 0)
 			return null;
 
@@ -62,15 +121,16 @@ public class MergeKSortedLists {
 
 		for (ListNode node : lists)
 			if (node != null)
-				queue.add(node);
+				queue.add(node);// 往优先队列中添加节点
 		System.out.println(queue.toString());
 
+		// 跳出条件，队列为空
 		while (!queue.isEmpty()) {
-			tail.next = queue.poll();
-			tail = tail.next;
+			tail.next = queue.poll();// 弹出第一个节点值最小的几点
+			tail = tail.next; // 将节点接到结果集中
 
 			if (tail.next != null)
-				queue.add(tail.next);
+				queue.add(tail.next); // 如果后续还有节点，将后续的节点继续放入优先队列中
 		}
 		return dummy.next;
 	}
