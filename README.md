@@ -58,7 +58,11 @@
 
 #### 34. Find First and Last Position of Element in Sorted Array    
 
+#### 35. First Missing Positive  
+
 #### 36. Valid Sudoku
+
+#### 37. Sudoku Solver
 
 #### 39. Combination Sum 
 
