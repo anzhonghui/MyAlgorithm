@@ -64,11 +64,21 @@
 
 #### 37. Sudoku Solver
 
+#### 38. Count and Say
+
 #### 39. Combination Sum 
 
 #### 40. Combination Sum II    
 
+#### 41. First Missing Positive
+
+#### 42. Trapping Rain Water
+
 #### 43. Multiply Strings    
+
+#### 44. Wildcard Matching
+
+#### 45. Jump Game II
 
 #### 46. Permutations
 
