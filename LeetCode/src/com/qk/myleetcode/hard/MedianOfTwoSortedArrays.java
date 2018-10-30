@@ -2,28 +2,58 @@ package com.qk.myleetcode.hard;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 4.Median Of Two Sorted Arrays
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 通过活用二分法解决问题，注意处理奇数和偶数不同位数的中位数求法
+ * 假如我有两个数组，长度分别为a，b，中位数的位置(a+b)/2；二分的计算，remLength=(a+b)/2,
+ * 对数组1进行二分a/2,计算数组2的位置 (a+b)/2 - a/2 = b/2，从结果可以看出来对数组2也进行了二分
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class MedianOfTwoSortedArrays {
 	
 	@Test
 	public void MyTes3() {
-		int[] a = {1,3};
-		int[] b = {2};
-		System.out.println(findMedianSortedArraysByMe(a, b));
-		int[] a1 = {1,3};
-		int[] b1 = {4};
-		System.out.println(findMedianSortedArraysByMe(a1, b1));
-		int[] a2 = {1,2,3};
-		int[] b2 = {4,5,6,7};
-		System.out.println(findMedianSortedArraysByMe(a2, b2));
-		int[] a3 = {1,2,3,4};
-		int[] b3 = {5,6,7,8};
-		System.out.println(findMedianSortedArraysByMe(a3, b3));
-		int[] a4 = {1,2,3,4};
-		int[] b4 = {5,6,7,8,9};
-		System.out.println(findMedianSortedArraysByMe(a4, b4));
+//		int[] a = {1,3};
+//		int[] b = {2};
+//		System.out.println(findMedianSortedArraysByMe(a, b));
+//		int[] a1 = {1,3};
+//		int[] b1 = {4};
+//		System.out.println(findMedianSortedArraysByMe(a1, b1));
+//		int[] a2 = {1,2,3};
+//		int[] b2 = {4,5,6,7};
+//		System.out.println(findMedianSortedArraysByMe(a2, b2));
+//		int[] a3 = {1,2,3,4};
+//		int[] b3 = {5,6,7,8};
+//		System.out.println(findMedianSortedArraysByMe(a3, b3));
+//		int[] a4 = {1,2,3,4};
+//		int[] b4 = {5,6,7,8,9};
+//		System.out.println(findMedianSortedArraysByMe(a4, b4));
+//		System.out.println(findMedianSortedArraysByMe(new int[] { 1, 2, 4 }, new int[] { 3, 5, 6, 7 }));
+		System.out.println(findMedianSortedArraysByMe(new int[] { 1, 2, 4, 5 }, new int[] { 3, 6, 7, 8, 9 }));
 	}
 	
-	// 1.数组交换
+	// 1.数组交换（短数组在前）
 	// 2.计算长度等信息（两个数组的长度，总长度的中位数）
 	// 3.进入循环（短数组的开始坐标小于终止坐标）
 	// 4.循环里两个数组中位数坐标的计算
@@ -44,7 +74,7 @@ public class MedianOfTwoSortedArrays {
 			int i = (iMin + iMax) / 2;
 			int j = remLength - i;
 
-			// 5.对比的三种情况
+			// 5.对比的三种情况(通过对短数组坐标的二分控制，也实现了长数组的二分)
 			if (i < iMax && nums2[j - 1] > nums1[i]) { // 如果长数组比短数组大，二分；短数组起始坐标叠加中间坐标
 				iMin = i + 1;
 			} else if (i > iMin && nums1[i - 1] > nums2[j]) { // 如果短数组比短数组大，二分；短数组终点坐标叠减中间坐标-1
@@ -64,6 +94,7 @@ public class MedianOfTwoSortedArrays {
 					return medianLeft;
 				}
 
+				// 处理偶数的中位数的情况
 				int medianRight = 0;
 				if (i == m) { // 说明短数组中的数比长数组的都小
 					medianRight = nums2[j];

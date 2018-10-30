@@ -1,7 +1,33 @@
 package com.qk.myleetcode.medium;
 
 import org.junit.Test;
-
+/**
+ * 
+ * 24.Swap Nodes In Pairs
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 交换链表的每两个节点
+ * @Programme：采用循环和递归的方式
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class SwapNodesInPairs {
 
 	@Test
@@ -32,7 +58,7 @@ public class SwapNodesInPairs {
 			ListNode right = head.next;
 			head.next = right.next;
 			right.next = head;
-			// temp徐姐交换后的链表
+			// temp是交换后的链表
 			temp.next = right;
 			// 跳过交换完成的两个元素
 			temp = temp.next.next;
@@ -64,6 +90,7 @@ public class SwapNodesInPairs {
 			return head;
 		}
 		
+		// 通过递归一直往后追加
 		ListNode right = head.next;
 		head.next = swapPairs(right.next);
 		right.next = head;

@@ -1,7 +1,34 @@
 package com.qk.myleetcode.medium;
 
 import org.junit.Test;
-
+/**
+ * 
+ * 19.Remove Nth Node From End Of List
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 移除链表中指定的第n个节点
+ * @Programme：错位移动，先移动fast链表n个节点，后同时移动fast和slow链表，跳出，slow链表得到指定的要剔除的节点，剔除
+ * 可以将时间复杂度控制在O(n),n是链表的size
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class RemoveNthNodeFromEndOfList {
 
 	@Test
@@ -12,20 +39,6 @@ public class RemoveNthNodeFromEndOfList {
 		listNode.next.next.next = new ListNode(4);
 		listNode.next.next.next.next = new ListNode(5);
 		System.out.println(removeNthFromEnd(listNode, 2));
-
-//		System.out.println(listNode.toString());
-//		
-//		listNode.next = listNode.next.next;
-//		
-//		System.out.println(listNode.toString());
-
-//		removeNthFromEnd(listNode, 2);
-
-//		ListNode listNode2 = new ListNode(1);
-//		System.out.println(removeNthFromEnd(listNode2, 1));
-//		ListNode listNode3 = new ListNode(1);
-//		listNode3.next = new ListNode(2);
-//		System.out.println(removeNthFromEnd(listNode3, 2));
 	}
 
 	/**
@@ -41,20 +54,24 @@ public class RemoveNthNodeFromEndOfList {
 		ListNode slow = head;
 
 		int temp = n;
+		// fast从后往前移动
 		while (temp > 0 && fast != null) {
 			fast = fast.next;
 			temp--;
 		}
 
+		// 说明指定的n已经超出链表的长度
 		if (fast == null) {
 			return head.next;
 		}
 
+		// slow从前往后移动
 		while (fast.next != null) {
 			fast = fast.next;
 			slow = slow.next;
 		}
 
+		// 移除节点
 		slow.next = slow.next.next;
 
 		return head;

@@ -5,6 +5,33 @@ import java.util.regex.Pattern;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 8.String To Integer
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 字符串转整形，遍历位数相加（注意处理边界问题）
+ * 常用的字符转数字的做法（重要）：int a = s.charAt(i) - '0'
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class StringToInteger {
 
 	@Test
@@ -24,6 +51,37 @@ public class StringToInteger {
 	}
 	
 	public int myAtoi(String str) {
+		str = str.trim();
+		if (str == null || str.length() < 1)
+			return 0;
+		// trim white spaces 记录正负的flag
+		char flag = '+';
+		// check negative or positive 检查是正数还是负数
+		int i = 0;
+		if (str.charAt(0) == '-') {
+			flag = '-';
+			i++;
+		} else if (str.charAt(0) == '+') {
+			i++;
+		}
+		// use double to store result 使用double类型，存储结果
+		double result = 0;
+		// calculate value 计算值，剔除符号，计算每一位
+		while (str.length() > i && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+			result = result * 10 + (str.charAt(i) - '0');
+			i++;
+		}
+		if (flag == '-')
+			result = -result;
+		// handle max and min 处理是边界值
+		if (result > Integer.MAX_VALUE)
+			return Integer.MAX_VALUE;
+		if (result < Integer.MIN_VALUE)
+			return Integer.MIN_VALUE;
+		return (int) result;
+	}
+	
+	public int myAtoi1(String str) {
 		int index = 0; // 字符串的索引
 		int total = 0; // 总数
 		int sign = 1;  // 正负标识
@@ -63,38 +121,6 @@ public class StringToInteger {
 			index++; // don't forget to increment the counter
 		}
 		return total * sign;
-	}
-	
-	
-	public int myAtoi1(String str) {
-		str = str.trim();
-		if (str == null || str.length() < 1)
-			return 0;
-		// trim white spaces
-		char flag = '+';
-		// check negative or positive
-		int i = 0;
-		if (str.charAt(0) == '-') {
-			flag = '-';
-			i++;
-		} else if (str.charAt(0) == '+') {
-			i++;
-		}
-		// use double to store result
-		double result = 0;
-		// calculate value
-		while (str.length() > i && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
-			result = result * 10 + (str.charAt(i) - '0');
-			i++;
-		}
-		if (flag == '-')
-			result = -result;
-		// handle max and min
-		if (result > Integer.MAX_VALUE)
-			return Integer.MAX_VALUE;
-		if (result < Integer.MIN_VALUE)
-			return Integer.MIN_VALUE;
-		return (int) result;
 	}
 
 	public int myAtoiByMe(String str) {

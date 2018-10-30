@@ -3,7 +3,7 @@ package com.qk.myleetcode.medium;
 import org.junit.Test;
 /**
  * 
- * code is far away from bug with the animal protecting
+ * 2. Add Two Numbers
  *  ┏┓　　┏┓
  * ┏┛┻━━━━┛┻┓
  * ┃　　　　　┃
@@ -29,11 +29,52 @@ import org.junit.Test;
  **				   输入：（2 - > 4 - > 3）+（5 - > 6 - > 4）
  **               输出：7 - > 0 - > 8
  **               说明：342 + 465 = 807。
+ *
+ * @Programme: 1.Java中没有指针，所以链表的使用要注意：先用head，current=head，那样后期可以直接修改current变量的值，
+ * 			      而修改current.next的值的同时，head的next也在变
+ *             2.和的计算主要要处理进位
+ *
  * ---------------------------------
  * @Author : huihui
  * @Date : Create in 2018年8月26日
  */
 public class AddTwoNumbers {
+	
+	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+		// 头
+		ListNode head = new ListNode(0);
+		// 结果
+		ListNode current = head;
+		// 进位
+		int carry = 0;
+
+		// 遍历链表的节点
+		while (l1 != null || l2 != null) {
+			// 获取两个节点的值
+			int x = l1 != null ? l1.val : 0;
+			int y = l2 != null ? l2.val : 0;
+			// 计算结果
+			int result = x + y + carry;
+			
+			// 计算进位
+			carry = result / 10;
+			// 计算当期那节点的值
+			current.next = new ListNode(result % 10);
+			// 递推
+			current = current.next;
+
+			// 递推
+			l1 = l1 != null ? l1.next : null;
+			l2 = l2 != null ? l2.next : null;
+		}
+		
+		if(carry > 0) {
+			current.next = new ListNode(carry);
+		}
+
+		return head.next;
+	}
 
 	@Test
 	public void solution() {
@@ -120,31 +161,6 @@ public class AddTwoNumbers {
 	 */
 	private int nextVal = 0;
 
-	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
-		ListNode head = new ListNode(0);
-		ListNode current = head;
-		int carry = 0;
-
-		while (l1 != null || l2 != null) {
-			int x = l1 != null ? l1.val : 0;
-			int y = l2 != null ? l2.val : 0;
-			int result = x + y + carry;
-			
-			carry = result / 10;
-			current.next = new ListNode(result % 10);
-			current = current.next;
-
-			l1 = l1 != null ? l1.next : null;
-			l2 = l2 != null ? l2.next : null;
-		}
-		
-		if(carry > 0) {
-			current.next = new ListNode(carry);
-		}
-
-		return head.next;
-	}
 	/**
 	 * 普遍的运行效率高
 	 * @param l1
@@ -208,7 +224,7 @@ public class AddTwoNumbers {
 					l1.next = new ListNode(0);
 				}
 			}
-			addTwoNumbers(l1.next, l2.next);
+			addTwoNumbers3(l1.next, l2.next);
 			
 		} else if (l1 != null) {
 			int val = l1.val + nextVal;
@@ -216,7 +232,7 @@ public class AddTwoNumbers {
 			l1.val = curVal;
 			nextVal = val / 10;
 			if (nextVal != 0 && l1.next != null) {
-				addTwoNumbers(l1.next, null);
+				addTwoNumbers3(l1.next, null);
 			} else if(nextVal != 0){
 				l1.next = new ListNode(nextVal);
 			}

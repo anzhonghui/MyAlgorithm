@@ -2,28 +2,36 @@ package com.qk.myleetcode.medium;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 12.Integer To Roman
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class IntegerToRoman {
 
 	@Test
 	public void MyTest() {
-//		System.out.println(intToRoman(3000));
-//		System.out.println(intToRoman(300));
-//		System.out.println(intToRoman(400));
-//		System.out.println(intToRoman(900));
-//		System.out.println(intToRoman(800));
-//		System.out.println(intToRoman(3300));
-//		System.out.println(intToRoman(3400));
-//		System.out.println(intToRoman(3900));
-//		System.out.println(intToRoman(3800));
-//		System.out.println(intToRoman(90));
-//		System.out.println(intToRoman(80));
-//		System.out.println(intToRoman(40));
-//		System.out.println(intToRoman(30));
-//		System.out.println(intToRoman(9));
-//		System.out.println(intToRoman(8));
-//		System.out.println(intToRoman(4));
-//		System.out.println(intToRoman(3));
-		
 		// leetcode test
 		System.out.println(intToRoman(3));
 		System.out.println(intToRoman(4));
@@ -33,11 +41,12 @@ public class IntegerToRoman {
 		System.out.println(intToRoman(1676));
 	}
 	
+	// 提前存好整数和罗马数字的对应，包括各种情况
     private static final int[] INTEGERS = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
     private static final String[] ROMANS = new String[]{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
     
     /**
-     * 思路：参考别人的思路，通过提前提取出各种情况，然后通过循环遍历（代码简洁，比较容易理解）
+     * 思路：通过提前提取出各种情况，然后通过循环遍历（代码简洁，比较容易理解）
      * @param num
      * @return
      */
@@ -47,8 +56,10 @@ public class IntegerToRoman {
         }
         
         StringBuilder sb = new StringBuilder();
+        // 从大到小往后遍历
         for (int i = 0; i < INTEGERS.length; i++) {
-            while (num >= INTEGERS[i]) {
+            // 一直想见，处理罗马数字出现多次的情况，如II
+        	while (num >= INTEGERS[i]) {
                 sb.append(ROMANS[i]);
                 num -= INTEGERS[i];
             }

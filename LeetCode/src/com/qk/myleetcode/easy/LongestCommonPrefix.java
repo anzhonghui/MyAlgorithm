@@ -2,6 +2,33 @@ package com.qk.myleetcode.easy;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 14.Longest Common Prefix
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 最长公共前缀
+ * @Programme：通过先匹配成功一对，找出公共部分，然后拿公共部分继续往下匹配（公共部分会一直缩减，最终结果为所有字符串的相同部分）
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class LongestCommonPrefix {
 
 	@Test
@@ -13,17 +40,24 @@ public class LongestCommonPrefix {
 //		String[] strs3 = {"racdog","racecar"};
 //		System.out.println(longestCommonPrefix(strs3));
 		
-//		String[] strs = {"flower","flow","flight"};
-//		System.out.println(longestCommonPrefixByFirst(strs));
-//		String[] strs2 = {"dog","racecar","car"};
-//		System.out.println(longestCommonPrefixByFirst(strs2));
-//		String[] strs3 = {"racdog","racecar"};
-//		System.out.println(longestCommonPrefixByFirst(strs3));
+		String[] strs = {"flower","flow","flight"};
+		System.out.println(longestCommonPrefixByBest(strs));
+		String[] strs2 = {"dog","racecar","car"};
+		System.out.println(longestCommonPrefixByBest(strs2));
+		String[] strs3 = {"racdog","racecar"};
+		System.out.println(longestCommonPrefixByBest(strs3));
 		
-		System.out.println("flower".indexOf("flight"));
 	}
 	
-	public String longestCommonPrefixByFirst(String[] strs) {
+	/**
+	 * 取第一个字符串为标准，依次跟后面的字符串匹配
+	 * flower  
+	 * flower -> flow ==> flow
+	 * flow -> flight ==> fl
+	 * @param strs
+	 * @return
+	 */
+	public String longestCommonPrefixByBest(String[] strs) {
         if (strs.length == 0) {
             return "";
         }

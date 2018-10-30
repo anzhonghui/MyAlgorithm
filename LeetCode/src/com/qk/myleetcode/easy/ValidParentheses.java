@@ -6,6 +6,33 @@ import java.util.Stack;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 20.Valid Parentheses
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 匹配括号
+ * @Programme：通过栈的思想解决，将左半部分存入栈push，如果碰到右半部分，pop取出
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class ValidParentheses {
 
 	@Test
@@ -27,7 +54,7 @@ public class ValidParentheses {
 	}
 
 	/**
-	 * 思路三（参考）：通过截取 栈的思想解决
+	 * 思路三（参考）：栈的思想解决
 	 * 
 	 * @param
 	 * @return
@@ -35,36 +62,36 @@ public class ValidParentheses {
 	public boolean isValidByStack(String s) {
 		if (s == null || s.isEmpty())
 			return true;
-		
+
 		// 定义一个栈
 		Stack<Character> stack = new Stack<>();
-		
+
 		String open = "{[(";
 		String close = "}])";
-		
+
 		for (char c : s.toCharArray()) {
 			// 如果是开阔号，放入栈
-			if(open.indexOf(c) != -1) {
+			if (open.indexOf(c) != -1) {
 				stack.push(c);
 			} else {
-				//闭括号
+				// 闭括号
 				// 1. 说明是空串
-				if(stack.isEmpty()) {
+				if (stack.isEmpty()) {
 					return false;
 				}
-				
+
 				// 2.如果不为空，提取出来对比
-				if(close.indexOf(c) != open.indexOf(stack.pop())) {
+				if (close.indexOf(c) != open.indexOf(stack.pop())) {
 					return false;
 				}
 			}
 		}
-		
+
 		return stack.isEmpty();
 	}
 
 	/**
-	 * 思路二（自己）：通过截取 [({(())}[()])] 对比成功的截取出来
+	 * 思路二（自己）：通过截取 [({(())}[()])] ，对比成功的截取出来，即从字符串中剔除
 	 * 
 	 * @param s
 	 * @return

@@ -5,6 +5,39 @@ import java.util.List;
 
 import org.junit.Test;
 
+/**
+ * 
+ *	17.Letter Combinations Of a Phone Number
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 给定数字键，找出数字键中包含字母的所有可能情况，即排列组合
+ * @Programme：采用深度优先搜索的方式，沿着树的深度一直遍历节点（将字母看做节点），通过递归找结果集
+ * 例如：     R    
+ *      /  |  \
+ *     a   b   c
+ *    /|\ /|\ /|\
+ *    def def def
+ * 结果：ad、ae、af；bd、be、bf；cd、ce、cf
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class LetterCombinationsOfaPhoneNumber {
 
 	@Test

@@ -8,7 +8,35 @@ import java.util.PriorityQueue;
 import org.junit.Test;
 
 import com.qk.myleetcode.medium.ListNode;
-
+/**
+ * 
+ * 23.Merge K Sorted Lists
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 合并k个链表
+ * @Programme：
+ * 1.使用嵌套递归的方式（通过嵌套递归，实现最终是两个链表的合并，合并后的链表继续与新链表合并）
+ * 2.采用优先队列的方式（定义好出队列的规则，达到每次只出链表数组中值最低的链表，取出头结点，将后面的界面继续放入）
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class MergeKSortedLists {
 
 	@Test
@@ -62,6 +90,12 @@ public class MergeKSortedLists {
 		return merge(helper(lists, start, mid), helper(lists, mid + 1, end));
 	}
 
+	/**
+	 * 比价两个链表，合并
+	 * @param l1
+	 * @param l2
+	 * @return
+	 */
 	private ListNode merge(ListNode l1, ListNode l2) {
 		if (l1 == null)
 			return l2;

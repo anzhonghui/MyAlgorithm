@@ -3,7 +3,30 @@ package com.qk.myleetcode.easy;
 import org.junit.Test;
 
 /**
- * Input: 1->2->4, 1->3->4 Output: 1->1->2->3->4->4
+ * 
+ * 21.Merge Two Sorted Lists
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 合并两个排好序的链表
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
  */
 public class MergeTwoSortedLists {
 

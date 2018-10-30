@@ -2,18 +2,15 @@ package com.qk.myleetcode.medium;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
 
 /**
- * [-1, 0, 1, 2, -1, -4] A solution set is: [ [-1, 0, 1], [-1, -1, 2] ]
- *
- * @Description : ---------------------------------
+ * 15.3Sum
+ * @Description : 求给定数组中三个数字的和是0的所有数组
  * @Author : huihui
  * @Date : Create in 2018年9月24日
  */
@@ -27,11 +24,20 @@ public class ThreeSum {
 	}
 	
 	/**
-	 *  思路：通过先排序的方式来避免后来的多差遍历，然后通过计算另外两个数字的和来找那两个元素的位置，这样可以省掉遍历另一半元素的时间
+	 * 思路：通过先排序的方式来避免后来的多差遍历，然后通过计算另外两个数字的和来找那两个元素的位置，这样可以省掉遍历另一半元素的时间
+	 * 0.先排序
+	 * 1.对数组进行一层遍历
+	 * 2.计算前len-2个数的另外两数之和
+	 * 3.从前取第一个元素的位置，从后取第二个元素的位置，剔除相同的元素
+	 * 4.进入第二层循环，第一个元素坐标小于第二个元素坐标
+	 * 5.三种情况
+	 *   5.1 和为0，满足结果；相同的元素跳过，继续找
+	 *   5.2 和小于，增大第一个元素的坐标，增小值
+	 *   5.3 和大于，减小第二个元素的坐标，减大值
 	 * @param nums
 	 * @return
 	 */
-	public List<List<Integer>> threeSum2(int[] nums) {
+	public List<List<Integer>> threeSum(int[] nums) {
 		// 先排序
 		Arrays.sort(nums);
 		// 存储结果的集合
@@ -74,9 +80,8 @@ public class ThreeSum {
 		return sol;
 	}
 
-	public List<List<Integer>> threeSum(int[] nums) {
+	public List<List<Integer>> threeSum2(int[] nums) {
 		List<List<Integer>> result = new ArrayList<>();
-		Set<String> set = new HashSet<>();
 
 		// 先排序
 		Arrays.sort(nums);
@@ -125,7 +130,6 @@ public class ThreeSum {
 
 		List<List<Integer>> result = new ArrayList<>();
 		Set<String> set = new HashSet<>();
-		Map<String, Integer> map = new HashMap<>();
 
 		// 固定第一个数
 		for (int i = 0; i < nums.length; i++) {

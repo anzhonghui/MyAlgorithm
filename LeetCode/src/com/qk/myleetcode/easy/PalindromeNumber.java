@@ -2,6 +2,33 @@ package com.qk.myleetcode.easy;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 9. Palindrome Number
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 判断整数是否是回文数
+ * @Programme：反向思路，计算数值
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class PalindromeNumber {
 
 	@Test
@@ -25,7 +52,11 @@ public class PalindromeNumber {
 //		System.out.println(Math.log10(1)+1);
 	}
 
-	// 反向思路
+	/**
+	 * 反向思路:反向计算数值，判断是否相同
+	 * @param x
+	 * @return
+	 */
 	public boolean isPalindrome(int x) {
 		if (x < 0) {
 			return false;

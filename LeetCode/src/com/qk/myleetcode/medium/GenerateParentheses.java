@@ -5,52 +5,41 @@ import java.util.List;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 22.Generate Parentheses
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 生成括号
+ * @Programme：通过递归实现
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class GenerateParentheses {
 
 	@Test
 	public void MyTest() {
 //		System.out.println(generateParenthesis(1).toString());
 //		System.out.println(generateParenthesis(2).toString());
-		System.out.println(generateParenthesisByMe(3).toString());
+		System.out.println(generateParenthesis(3).toString());
 	}
-
-//	public List<String> generateParenthesis(int n) {
-//		List<String> lists = new ArrayList<>();
-//		
-//		return lists;
-//	}
-	
-	
-	public List<String> generateParenthesisByMe(int num){
-		List<String> lists = new ArrayList<>();
-		char[] buffer = new char[num * 2];
-		makeParenthesis(lists, num, num, buffer, 0);
-		System.out.println(lists.toString());
-		return lists;
-	}
-	
-	public void makeParenthesis(List<String> lists, int left, int right, char[] buffer, int count) {
-		if(left < 0) {
-			return;
-		}
-
-		// 如果递归到0，添加
-		if(left == 0 && right == 0) {
-			lists.add(String.copyValueOf(buffer));
-		}else {
-			if(left > 0) {
-				buffer[count] = '(';
-				makeParenthesis(lists, left- 1, right, buffer, count+1);
-			}
-			
-			if(right > left) {
-				buffer[count] = ')';
-				makeParenthesis(lists, left, right - 1, buffer, count+1);
-			}
-		}
-		
-	}
-	
 
 	/**
 	 * 生成n对括号的全部有效组合
@@ -71,14 +60,14 @@ public class GenerateParentheses {
 	 * @param list     装括号组合的容器
 	 * @param leftRem  左括号剩余数量
 	 * @param rightRem 右括号剩余数量
-	 * @param buffer   放括号的字符数组
+	 * @param buffer   放括号的字符数组，临时
 	 * @param count    插入括号的位置
 	 */
 	private static void make(List<String> list, int leftRem, int rightRem, char[] buffer, int count) {
 		if (leftRem < 0 || rightRem < leftRem) { // 无效输入
 			return;
 		}
-		if (leftRem == 0 && rightRem == 0) { // 木有括号了
+		if (leftRem == 0 && rightRem == 0) { // 木有括号了，得到结果
 			String s = String.copyValueOf(buffer);
 			list.add(s);
 		} else {
@@ -92,4 +81,35 @@ public class GenerateParentheses {
 			}
 		}
 	}
+
+	public List<String> generateParenthesisByMe(int num) {
+		List<String> lists = new ArrayList<>();
+		char[] buffer = new char[num * 2];
+		makeParenthesis(lists, num, num, buffer, 0);
+		System.out.println(lists.toString());
+		return lists;
+	}
+
+	public void makeParenthesis(List<String> lists, int left, int right, char[] buffer, int count) {
+		if (left < 0) {
+			return;
+		}
+
+		// 如果递归到0，添加
+		if (left == 0 && right == 0) {
+			lists.add(String.copyValueOf(buffer));
+		} else {
+			if (left > 0) {
+				buffer[count] = '(';
+				makeParenthesis(lists, left - 1, right, buffer, count + 1);
+			}
+
+			if (right > left) {
+				buffer[count] = ')';
+				makeParenthesis(lists, left, right - 1, buffer, count + 1);
+			}
+		}
+
+	}
+
 }

@@ -2,6 +2,32 @@ package com.qk.myleetcode.easy;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 7.Reverse Integer
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 数字的倒置
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class ReverseInteger {
 
 	@Test
@@ -14,6 +40,11 @@ public class ReverseInteger {
 		System.out.println(reverse(-2147483648));
 	}
 
+	/**
+	 * 数学问题，先对10取余，得前面的数字；然后对10取整，获得接下来要操作的数字
+	 * @param x
+	 * @return
+	 */
 	public int reverse(int x) {
 		StringBuilder sBuilder = new StringBuilder();
 		int symbol = 1;

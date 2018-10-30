@@ -4,6 +4,33 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 10.Regular Expression Matching
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 字符串的匹配，'.'匹配任意单个字符；'*'匹配前一个元素的0个或多个
+ * @Programme：使用动态规划解决问题，二位数组
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class RegularExpressionMatching {
 
 	/**
@@ -18,9 +45,9 @@ public class RegularExpressionMatching {
 	 */
 	@Test
 	public void MyTest() {
-		System.out.println(isMatch("aa","a"));
-		System.out.println("----------------");
-		System.out.println(isMatch("aa","a*"));
+//		System.out.println(isMatch("aa","a"));
+//		System.out.println("----------------");
+//		System.out.println(isMatch("aa","a*"));
 //		System.out.println(isMatch("ab",".*"));
 //		System.out.println(isMatch("aab","c*a*b"));
 //		System.out.println(isMatch("abc", "a*b*"));
@@ -29,13 +56,14 @@ public class RegularExpressionMatching {
 //		System.out.println(isMatch("aa", "aaa"));
 //		System.out.println(isMatch("aaa", "a.a"));
 //		System.out.println(isMatch("a", "ab*"));
-//		System.out.println(isMatch("bbbba", ".*a*a"));
+		System.out.println(isMatch("bbbba", "b.*a"));
 //		System.out.println(isMatch("a", ".*..a*"));
 //		System.out.println(isMatch("a", ".*."));
 
 	}
 
 	/**
+	 * DP,动态规划
 	 * 1, If p.charAt(j) == s.charAt(i) :  dp[i][j] = dp[i-1][j-1];
 	 * 2, If p.charAt(j) == '.' : dp[i][j] = dp[i-1][j-1];
 	 * 3, If p.charAt(j) == '*': 
@@ -45,6 +73,17 @@ public class RegularExpressionMatching {
 	 *                         dp[i][j] = dp[i-1][j]    //in this case, a* counts as multiple a 
 	 *                      or dp[i][j] = dp[i][j-1]   // in this case, a* counts as single a
 	 *                      or dp[i][j] = dp[i][j-2]   // in this case, a* counts as empty
+	 * 举例：  
+	 *       .  *  a  *  a                     
+	 *   [T, F, T, F, T, F]
+	 * b [F, T, T, F, T, F]
+	 * b [F, F, T, F, T, F]
+	 * b [F, F, T, F, T, F]
+	 * b [F, F, T, F, T, F]
+	 * a [F, F, T, T, T, T]
+	 * 
+	 * . 匹配一个字符，交际的字符
+	 * * 匹配一列字符，只要前面有字符匹配成功
 	 * @param s
 	 * @param p
 	 * @return
@@ -60,7 +99,6 @@ public class RegularExpressionMatching {
 				dp[0][i + 1] = true;
 			}
 		}
-		toString(dp);
 		for (int i = 0; i < s.length(); i++) {
 			for (int j = 0; j < p.length(); j++) {
 				if (p.charAt(j) == '.') {
