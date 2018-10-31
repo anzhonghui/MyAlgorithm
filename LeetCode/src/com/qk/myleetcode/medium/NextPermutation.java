@@ -3,7 +3,35 @@ package com.qk.myleetcode.medium;
 import java.util.Arrays;
 
 import org.junit.Test;
-
+/**
+ * 
+ * 31.Next Permutation
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 找到下一个更大的数字排列（排列组合）
+ * @Programme：假定数组由三部分组成：A(升序)，target(中间值)，B(降序)
+ * 如果求该序列的下一个较大的序列，只能改中间值，按照B序列的升序顺序找比中间值大的数，跟中间值交换
+ * 把交换后的B序列，改为升序序列，即得到结果
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class NextPermutation {
 
 	/**
@@ -19,7 +47,7 @@ public class NextPermutation {
 	 * 排好序的数组内容：1,1,3,4,5,5,6,7,8
 	 * one：
 	 * 1,1,3,4,5,5,6,7,8
-	 * nums[i] = 7, nums[j] = 8,i和j取得都是一开始的数值，这样最终交换的事最后的两个元素，因为i到最后只有一个元素，所以不需要取反
+	 * nums[i] = 7, nums[j] = 8,i和j取得都是一开始的数值，这样最终交换的是最后的两个元素，因为i到最后只有一个元素，所以不需要取反
 	 * 交换后的结果：1,1,3,4,5,5,6,8,7
 	 * two：
 	 * 8,7,6,5,5,4,3,1,1
@@ -57,7 +85,7 @@ public class NextPermutation {
 	}
 
 	/**
-	 * 从交换数字往后的序列互换
+	 * 从交换数字往后的序列互换，取反
 	 * 
 	 * @param nums
 	 * @param start
@@ -71,6 +99,12 @@ public class NextPermutation {
 		}
 	}
 
+	/**
+	 * 交换数组中的两个指定的数
+	 * @param nums
+	 * @param i
+	 * @param j
+	 */
 	private void swap(int[] nums, int i, int j) {
 		int temp = nums[i];
 		nums[i] = nums[j];

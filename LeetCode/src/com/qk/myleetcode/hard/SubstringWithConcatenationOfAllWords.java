@@ -8,7 +8,32 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
-
+/**
+ * 
+ * 30.Substring With Concatenation Of All Words
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 找出字符串中由给定字符串数组组成的子串（包含字符串数组中的所有字符串，且不重复），返回他们的起始坐标
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class SubstringWithConcatenationOfAllWords {
 
 	/**
@@ -44,7 +69,7 @@ public class SubstringWithConcatenationOfAllWords {
 		if (m == 0 || n == 0)
 			return result;
 		int l = words[0].length();
-		// 存储words出现的次数
+		// 存储words中各个字符串出现的次数
 		Map<String, Integer> map = new HashMap<>();
 		for (String w : words) {
 			map.put(w, map.getOrDefault(w, 0) + 1);
@@ -59,7 +84,7 @@ public class SubstringWithConcatenationOfAllWords {
 				for (int k = m - 1; k >= 0; k--) {
 					// 根据长度，截取出指定长度的子串
 					String w = ss.substring(k * l, (k + 1) * l);
-					// 统计子串出现的此处
+					// 统计子串出现的次数
 					int count = temp.getOrDefault(w, 0) + 1;
 					// 比对大小，如果大于，跳出；获取没有，也大于，跳出
 					if (count > map.getOrDefault(w, 0)) {
@@ -100,7 +125,7 @@ public class SubstringWithConcatenationOfAllWords {
 		int n = s.length(), num = words.length, len = words[0].length();
 		// 长度要减去最后一串的长度
 		for (int i = 0; i < n - num * len + 1; i++) {
-			// 存放应匹配的串和出现的次数
+			// 存放应匹配的串和出现的次数，为了防止子串中包含重复的字符串
 			Map<String, Integer> seen = new HashMap<>();
 			int j = 0;
 			while (j < num) {

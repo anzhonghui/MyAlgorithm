@@ -3,7 +3,34 @@ package com.qk.myleetcode.medium;
 import java.util.Arrays;
 
 import org.junit.Test;
-
+/**
+ * 
+ * 34.Find First And Last Position Of Element In Sorted Array
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 查找目标元素在数组中第一次和最后一次出现的位置
+ * @Programme：改进的二分法，通过查找target第一次出现的位置，和比target大的元素第一次出现的位置，
+ * 实现了元素第一次出现位置和最后一次出现位置坐标的查找
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class FindFirstAndLastPositionOfElementInSortedArray {
 
 	@Test
@@ -17,10 +44,53 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
 //		System.out.println(Arrays.toString(searchRange(arr3, 2)));
 //		int[] arr4 = { 2 };
 //		System.out.println(Arrays.toString(searchRange(arr4, 2)));
-		int[] arr5 = { 3, 3, 3, 5 };
+//		int[] arr5 = { 3, 3, 3, 5 };
+		int[] arr5 = { 1, 2, 3, 5 };
 		System.out.println(Arrays.toString(searchRange(arr5, 3)));
 	}
+	
+	public int[] searchRange(int[] nums, int target) {
+		if (nums.length == 0)
+			return new int[] { -1, -1 };
 
+		// 获取target第一次出现的位置
+		int first = getFirst(nums, target);
+		// 获取比target大（大1是为了查找）的元素第一次出现的位置
+		int last = getFirst(nums, target + 1);
+		if (nums[first] != target)
+			return new int[] { -1, -1 };
+
+		last = nums[last] == target ? last : last - 1;
+
+		return new int[] { first, last };
+	}
+
+	/**
+	 * 变形的二分法查找某个数字出现的第一次，如果没有，返回的是比它大的元素第一次出现的位置
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
+	private int getFirst(int[] nums, int target) {
+		int p = 0, q = nums.length - 1;
+		while (p < q) {
+			int mid = (p + q) / 2;
+			// 小于目标元素，p+
+			if (nums[mid] < target)
+				p = mid + 1;
+			// 大于等于目标元素，q-
+			else
+				q = mid;
+		}
+		return q;
+	}
+
+	/**
+	 * 自己写的，没有解出来
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
 	public int[] searchRangeByMe(int[] nums, int target) {
 		int[] arr = new int[2];
 
@@ -55,37 +125,4 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
 		return arr;
 	}
 
-	public int[] searchRange(int[] nums, int target) {
-		if (nums.length == 0)
-			return new int[] { -1, -1 };
-
-		// 获取target第一次出现的位置
-		int first = getFirst(nums, target);
-		// 获取比target大（大1是为了查找）的元素第一次出现的位置
-		int last = getFirst(nums, target + 1);
-		if (nums[first] != target)
-			return new int[] { -1, -1 };
-
-		last = nums[last] == target ? last : last - 1;
-
-		return new int[] { first, last };
-	}
-
-	/**
-	 * 变形的二分法查找某个数字出现的第一次，如果没有，返回的是比它大的元素第一次出现的位置
-	 * @param nums
-	 * @param target
-	 * @return
-	 */
-	private int getFirst(int[] nums, int target) {
-		int p = 0, q = nums.length - 1;
-		while (p < q) {
-			int mid = (p + q) / 2;
-			if (nums[mid] < target)
-				p = mid + 1;
-			else
-				q = mid;
-		}
-		return q;
-	}
 }

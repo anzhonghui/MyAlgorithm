@@ -1,7 +1,33 @@
 package com.qk.myleetcode.easy;
 
 import org.junit.Test;
-
+/**
+ * 	
+ * 35.Search Insert Position
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 查找目标元素应该在的位置
+ * @Programme：使用二分法
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class SearchInsertPosition {
 
 	@Test

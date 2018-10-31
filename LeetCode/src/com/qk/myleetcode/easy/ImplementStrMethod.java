@@ -1,7 +1,32 @@
 package com.qk.myleetcode.easy;
 
 import org.junit.Test;
-
+/**
+ * 
+ * 28.Implement Str()
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class ImplementStrMethod {
 
 	@Test
@@ -37,7 +62,7 @@ public class ImplementStrMethod {
 		while (i < haystack.length()) {
 			if (haystack.charAt(i) == needle.charAt(j)) {
 				j++;
-			} else if (j != 0) {
+			} else if (j != 0) { // 出现不匹配的情况，恢复
 				i -= j;
 				j = 0;
 			}

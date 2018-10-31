@@ -1,7 +1,33 @@
 package com.qk.myleetcode.medium;
 
 import org.junit.Test;
-
+/**
+ * 
+ * 33.Search In Rotated Sorted Array
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 排好序的数组，找出目标元素的坐标（正常我们看到排好序，找元素，想到的都是二分法，但是这个数组有点特殊，原有的二分法也要改进）
+ * @Programme：改进的二分法；明确三个关系：nums[0]、target、num[mid]
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月30日
+ */
 public class SearchInRotatedSortedArray {
 
 	/**
@@ -15,6 +41,11 @@ public class SearchInRotatedSortedArray {
 	}
 
 	/*	
+	 * 数组分为两部分，A（较大的数组）B（较小的数组）
+	 * 1.判断target在A，还是在B；
+	 * 2.判断mid在A，还是在B；
+	 * 3.判断target在mid的左侧还是右侧
+	 * 
 	 * nums[0]>target	nums[0]>num[mid]	target>nums[mid]	^的结果	可行性	Lo和hi的变动
 	 * 		F					F					F				F				Hi
 	 * 		F					F					T				T				lo 

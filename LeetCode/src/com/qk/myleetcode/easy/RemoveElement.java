@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  * 
- * code is far away from bug with the animal protecting
+ * 27. Remove Element
  *  ┏┓　　┏┓
  * ┏┛┻━━━━┛┻┓
  * ┃　　　　　┃
@@ -25,7 +25,7 @@ import org.junit.Test;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  *
- * @Description : 27. Remove Element
+ * @Description : 移除指定的目标元素，返回新数组的长度
  * Given an array nums and a value val, remove all instances of that value in-place and return the new length.
  * ---------------------------------
  * @Author : huihui

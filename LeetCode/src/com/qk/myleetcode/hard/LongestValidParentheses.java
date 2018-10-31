@@ -6,8 +6,9 @@ import org.junit.Test;
 
 /**
  * 
- * Longest Valid Parentheses    
- * @Description : 
+ * 32.Longest Valid Parentheses    
+ * @Description : 找最大的有效括号长度
+ * @Programme:使用栈的数据结构，存储字符的坐标；通过判断是否匹配，剔除元素；栈中最后剩下的数字即为不匹配的坐标；计算
  * ---------------------------------
  * @Author : huihui
  * @Date : Create in 2018年10月20日
@@ -29,7 +30,52 @@ public class LongestValidParentheses {
 //		System.out.println(longestValidParentheses(")()())"));
 //		System.out.println(longestValidParentheses(")((()))())"));
 //		System.out.println(longestValidParentheses("()(()"));
-		System.out.println(longestValidParentheses("()(()()(((()))"));
+		System.out.println(longestValidParenthesesByStack("()(()()(((()))"));
+	}
+
+	/**
+	 * 使用栈，通过记录出现不匹配的坐标计算最长的有效括号，速度慢，但是便于理解
+	 * @param s
+	 * @return
+	 */
+	private int longestValidParenthesesByStack(String s) {
+		int n = s.length(), longest = 0;
+		// 最终存放的是不匹配括号的 ** 坐标 **（因为最终计算的是匹配的最长长度，所以栈中存储字符的坐标）
+		Stack<Integer> st = new Stack<>();
+		for (int i = 0; i < n; i++) {
+			if (s.charAt(i) == '(')
+				st.push(i);
+			else {
+				if (!st.empty()) {
+					// 取出栈顶元素
+					// 如果匹配，弹出
+					if (s.charAt(st.peek()) == '(')
+						st.pop();
+					// 不匹配，继续push
+					else
+						st.push(i);
+				} else
+					st.push(i);
+			}
+		}
+
+		// 如果栈为空，那么说明括号都匹配，所以长度为length
+		if (st.empty())
+			longest = n;
+		else {
+			// a是长度，也是不匹配的坐标，作为下一次计算的长度；b是不匹配的坐标；a是b的上一个不匹配的坐标（从后往前）
+			int a = n, b = 0;
+			while (!st.empty()) {
+				// 取出栈顶元素
+				b = st.peek();
+				st.pop();
+				// 因为坐标从0开始，所以要减1
+				longest = Math.max(longest, a - b - 1);
+				a = b;
+			}
+			longest = Math.max(longest, a);
+		}
+		return longest;
 	}
 
 	/**
@@ -83,46 +129,10 @@ public class LongestValidParentheses {
 	}
 
 	/**
-	 * 使用栈，通过记录出现不匹配的坐标计算最长的有效括号，速度慢，但是便于理解
+	 * 自己想的，没有解决问题
 	 * @param s
 	 * @return
 	 */
-	private int longestValidParenthesesByStack(String s) {
-		int n = s.length(), longest = 0;
-		// 最终存放的是不匹配括号的坐标
-		Stack<Integer> st = new Stack<>();
-		for (int i = 0; i < n; i++) {
-			if (s.charAt(i) == '(')
-				st.push(i);
-			else {
-				if (!st.empty()) {
-					if (s.charAt(st.peek()) == '(')
-						st.pop();
-					else
-						st.push(i);
-				} else
-					st.push(i);
-			}
-		}
-		
-		// 如果栈为空，那么说明括号都匹配，所以长度为length
-		if (st.empty())
-			longest = n;
-		else {
-			// a是长度，也是不匹配的坐标，作为下一次计算的长度；b是不匹配的坐标；a是b的上一个不匹配的坐标
-			int a = n, b = 0;
-			while (!st.empty()) {
-				b = st.peek();
-				st.pop();
-				// 因为坐标从0开始，所以要减1
-				longest = Math.max(longest, a - b - 1);
-				a = b;
-			}
-			longest = Math.max(longest, a);
-		}
-		return longest;
-	}
-
 	public int longestValidParenthesesByMe(String s) {
 		Stack<Character> stack = new Stack<>();
 		int result = 0;
