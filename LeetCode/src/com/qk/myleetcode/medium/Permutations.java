@@ -6,8 +6,9 @@ import java.util.List;
 import org.junit.Test;
 
 /**
+ * 46.Permutations
  * 
- * @Description : 
+ * @Description : 排列组合 （没有重复元素）
  * Input: [1,2,3]
  * Output:
  * [
@@ -18,6 +19,8 @@ import org.junit.Test;
  * 	 [3,1,2],
  * 	 [3,2,1]
  * ]
+ * 
+ * @Programme：使用递归的方式，类似之前的求数组中和是target的子数组
  * ---------------------------------
  * @Author : huihui
  * @Date : Create in 2018年10月10日
@@ -53,8 +56,11 @@ public class Permutations {
 			if (temp.contains(nums[i])) {
 				continue;
 			}
+			// 添加新元素
 			temp.add(nums[i]);
+			// 递归
 			backtrack(result, temp, nums);
+			// 移除最后一个元素
 			temp.remove(temp.size() - 1);
 		}
 	}

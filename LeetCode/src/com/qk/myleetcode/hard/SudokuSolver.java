@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.junit.Test;
 
 /**
- * Sudoku Solver
- * code is far away from bug with the animal protecting
+ * 
+ * 37.Sudoku Solver
  *  ┏┓　　┏┓
  * ┏┛┻━━━━┛┻┓
  * ┃　　　　　┃
@@ -26,9 +26,8 @@ import org.junit.Test;
  * 　　　┗┻┛　┗┻┛
  *
  * @Description : Sudoku Solver 数独解
- * Try 1 through 9 for each cell. The time complexity should be 9 ^ m 
- * (m represents the number of blanks to be filled in), 
- * since each blank can have 9 choices. Details see comments inside code.
+ * @Programme：使用递归找数独的节，在空格中尝试1-9个数字，判断插入某个数字后是否满足行、列、九宫格的唯一；
+ * 			   添加之后递归检查数独是否有解，如果没有，恢复原空格的值，继续尝试。
  * ---------------------------------
  * @Author : huihui
  * @Date : Create in 2018年10月23日

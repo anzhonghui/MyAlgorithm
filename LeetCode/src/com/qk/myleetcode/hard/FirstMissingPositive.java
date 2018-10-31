@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.junit.Test;
 
 /**
- * First Missing Positive    
- * code is far away from bug with the animal protecting
+ * 
+ * 41.First Missing Positive    
  *  ┏┓　　┏┓
  * ┏┛┻━━━━┛┻┓
  * ┃　　　　　┃
@@ -25,7 +25,11 @@ import org.junit.Test;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  *
- * @Description : 
+ * @Description : 从无序数组中找到最小的丢失的正整数
+ * @Programme：利用hash的思想，找最小缺失的正整数，将正整数放到他们该处的坐标位置，值大于数组长度的或是负数的不做处理
+ * 例如：3, 4, -1, 1
+ * 交换：1, -1, 3, 4
+ * 从头开始遍历，可以确认缺失的最小正整数是2
  * ---------------------------------
  * @Author : huihui
  * @Date : Create in 2018年10月22日
@@ -75,12 +79,23 @@ public class FirstMissingPositive {
 
 	}
 
+	/**
+	 * 交换数组中的两个元素
+	 * @param nums
+	 * @param i
+	 * @param j
+	 */
 	private static void swap(int[] nums, int i, int j) {
 		int temp = nums[i];
 		nums[i] = nums[j];
 		nums[j] = temp;
 	}
 
+	/**
+	 * 自己的想法，利用java自带的排序，简单
+	 * @param nums
+	 * @return
+	 */
 	public int firstMissingPositiveByMe(int[] nums) {
 		int min = 1;
 

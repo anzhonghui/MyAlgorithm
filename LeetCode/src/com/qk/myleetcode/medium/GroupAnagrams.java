@@ -8,6 +8,35 @@ import java.util.Map;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 49.Group Anagrams
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 对给定的字符串数组分组
+ * @Programme：均采用hash的思想，利用率Java的hashmap存储
+ * 1.key->value:key的取值是每个字符串的字符数组排好序的值，value是结果集list
+ * 2.key->value的方式，key由指定格式的字符串组成，value是list( key: #1#2#3#0#0#0...#0 -> abbccc )
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月31日
+ */
 public class GroupAnagrams {
 
 	@Test

@@ -6,7 +6,24 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * @Description : 43. Multiply Strings
+ * 
+ * 43. Multiply Strings
+ * 
+ * @Description : 字符串中的数值相乘，不能使用BigInteger，也就是说不能先将字符串转整形，然后计算乘法
+ * @Programme：从后往前遍历计算，主要需要处理当前位数和进位数的控制
+ * 例如：
+ *       1 2 3
+ *         4 5
+ * ——————————————
+ *         1 5
+ *       1 0
+ *     0 5
+ * ——————————————
+ *       1 2
+ *     0 8
+ *   0 4
+ * ——————————————
+ *   0 5 5 3 5
  * ---------------------------------
  * @Author : huihui
  * @Date : Create in 2018年10月7日
@@ -29,12 +46,16 @@ public class MultiplyStrings {
 		int m = num1.length(), n = num2.length();
 		int[] pos = new int[m + n];
 
+		// 从后往前
 		for (int i = m - 1; i >= 0; i--) {
 			for (int j = n - 1; j >= 0; j--) {
+				// 进位数
 				int p1 = i + j;
+				// 当前位数的计算
 				int p2 = i + j + 1;
 				// 计算和
 				int sum = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+				// 加上原先的进位数
 				sum += pos[p2];
 				// 进位
 				pos[p1] += sum / 10;

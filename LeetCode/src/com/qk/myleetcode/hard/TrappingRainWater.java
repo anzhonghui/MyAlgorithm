@@ -1,12 +1,10 @@
 package com.qk.myleetcode.hard;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
 /**
- * Trapping Rain Water    
- * code is far away from bug with the animal protecting
+ * 
+ * 42.Trapping Rain Water    
  *  ┏┓　　┏┓
  * ┏┛┻━━━━┛┻┓
  * ┃　　　　　┃
@@ -25,8 +23,29 @@ import org.junit.Test;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  *
- * @Description : Trapping Rain Water    
- * 
+ * @Description : 计算可以撑多少水
+ * @Programme：采用数学的思路解题，先从左边依次找最大的盛水量，再从右边找最大的盛水量，然后遍历，取两个中最小的与原先的高度相减，即可得到盛水量
+ * 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1
+ * * 代表水池，+代表水量
+ *|         *       |
+ *|    *+++***+*    |
+ *|  *+**+*******   |
+ *
+ * 从左边查找最大的盛水量
+ *|         *****   |
+ *|    **********   |
+ *|  ************   |
+ *
+ * 从右边查找最大的盛水量
+ *|  ********       |
+ *|  ***********    |
+ *|  ************   |
+ *  
+ * 取小的减去高度，即得到总共的盛水量
+ *|                 |
+ *|       +         |
+ *|    + +++  +     |
+ *  
  * ---------------------------------
  * @Author : huihui
  * @Date : Create in 2018年10月25日

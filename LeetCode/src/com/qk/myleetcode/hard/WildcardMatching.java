@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 import org.junit.Test;
 /**
- * Wildcard Matching
- * code is far away from bug with the animal protecting
+ * 
+ * 44.Wildcard Matching
  *  ┏┓　　┏┓
  * ┏┛┻━━━━┛┻┓
  * ┃　　　　　┃
@@ -24,7 +24,8 @@ import org.junit.Test;
  * 　　　┃┫┫　┃┫┫
  * 　　　┗┻┛　┗┻┛
  *
- * @Description : Wildcard Matching
+ * @Description : 字符串的匹配，？匹配任意单个字符，*匹配任意的序列
+ * @Programme：使用二维数组解决DP问题
  * ---------------------------------
  * @Author : huihui
  * @Date : Create in 2018年10月27日

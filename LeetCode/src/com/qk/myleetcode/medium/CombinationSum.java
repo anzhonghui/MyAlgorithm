@@ -5,7 +5,50 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-
+/**
+ * 
+ * 39.Combination Sum
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 找出给定数组中所有能够达到目标元素的解（元素可以重复）
+ * @Programme：使用递归的方式：递归尝试数组中每个数字的各种个数达到的目标元素的情况，然后依次移除最后一个元素，装入新元素尝试
+ * 过程简单描述： 
+ * 1：    2 2 2 2 满足
+ * 2：    2 2 2 3 不满足
+ * 3:   2 2 3  不满足
+ * 4：    2 3 3 满足
+ * 5：    2 5 不满足
+ * 6：    3 3 不满足
+ * 7：    3 5 满足
+ * 
+ * 递归：
+ * 1.基线条件：当目标元素的值被减到0，添加结果，跳出递归；循环条件即没有被减到0
+ * 2.循环数组中的元素，目标元素减去当前的数组元素
+ *  2.1 >=0
+ *  	2.1.1 将当前元素添加到list中
+ *  	2.1.2 递归（因为可以重复，所以起始坐标不变，target减掉当前元素）
+ *  	2.1.3 移除list中最后一个元素
+ *  2.2 <0，跳出循环
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月31日
+ */
 public class CombinationSum {
 
 	@Test
@@ -19,6 +62,7 @@ public class CombinationSum {
 		}
 		List<Integer> list = new ArrayList<>();
 		List<List<Integer>> res = new ArrayList<>();
+		// 对数组进行排序
 		Arrays.sort(candidates);
 		backtrack(res, list, candidates, 0, target);
 		return res;
@@ -43,14 +87,19 @@ public class CombinationSum {
 		// 对数组进行遍历，每次递归从start开始
 		/**
 		 * 过程简单描述： 
-		 * 第一次递归后的结果是：       2 2 2 2 
-		 *移除最后一个元素继续递归： 2 2 2 3(5 ...)
+		 * 1：    2 2 2 2 满足
+		 * 2：    2 2 2 3 不满足
+		 * 3:   2 2 3  不满足
+		 * 4：    2 3 3 满足
+		 * 5：    2 5 不满足
+		 * 6：    3 3 不满足
+		 * 7：    3 5 满足
 		 */
 		for (int i = start; i < candidates.length; i++) {
 			if (target - candidates[i] >= 0) {
 				list.add(candidates[i]);
 				// 执行完，可能有一组解
-				backtrack2(res, list, candidates, i, target - candidates[i]);
+				backtrack(res, list, candidates, i, target - candidates[i]);
 				// 依次移除最后一个元素，尝试跟其他元素匹配的结果
 				list.remove(list.size() - 1);
 			} else {

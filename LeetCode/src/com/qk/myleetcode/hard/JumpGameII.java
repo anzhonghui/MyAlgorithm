@@ -2,6 +2,33 @@ package com.qk.myleetcode.hard;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 45.Jump Game II
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 跳字游戏，调到当前的数值，为可以继续跳的最大步数，求最少的跳跃次数
+ * 
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月31日
+ */
 public class JumpGameII {
 
 	/**

@@ -2,11 +2,38 @@ package com.qk.myleetcode.medium;
 
 import org.junit.Test;
 
+/**
+ * 
+ * 50.Pow(x, n)
+ *  ┏┓　　┏┓
+ * ┏┛┻━━━━┛┻┓
+ * ┃　　　　　┃
+ * ┃　　　━　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　 ┃
+ * ┃　　　┻　　┃
+ * ┃　　　　　 ┃
+ * ┗━━┓　　　┏━┛
+ * 　　┃　　　┃神兽保佑
+ * 　　┃　　　┃代码无BUG！
+ * 　　┃　　　┗━━━┓
+ * 　　┃　　　　　　┣┓
+ * 　　┃　　　　　　┏┛
+ * 　　┗┓┓┏━┳┏┛
+ * 　　　┃┫┫　┃┫┫
+ * 　　　┗┻┛　┗┻┛
+ *
+ * @Description : 求x的n次方
+ * @Programme：
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年10月31日
+ */
 public class Pow_x_n {
 
 	@Test
 	public void MyTest() {
-//		System.out.println(myPow(2, 5));
+		System.out.println(myPow(2, 3));
 //		System.out.println(myPow(2, 10));
 //		System.out.println(myPow(2.1, 3));
 //		System.out.println(myPow(2, -2));
@@ -16,9 +43,15 @@ public class Pow_x_n {
 //		System.out.println(myPow(8.84372, -5));
 //		System.out.println(myPow(2.00000, -2147483648));
 //		System.out.println(myPow(2.00000, -2));
-		System.out.println(Double.MAX_VALUE*Double.MAX_VALUE);
+//		System.out.println(Double.MAX_VALUE*Double.MAX_VALUE);
 	}
 
+	/**
+	 * 采用二分的思想计算乘积
+	 * @param x
+	 * @param n
+	 * @return
+	 */
 	public double myPow(double x, int n) {
 		if (x == 0)
 			return 0;
@@ -28,14 +61,18 @@ public class Pow_x_n {
 			return x;
 
 		if (n < 0) {
-			// 先求出来前n个数的成绩，在*最后一个,如果采用先求职，最后除的话，会出来无穷问题
+			// 先求出来前n个数的乘积，在*最后一个,如果采用先乘积，最后除的话，会出来无穷问题
 			return myPow(1 / x, (n + 1) * -1) * 1 / x;
 		}
 
+		// 递归二分
 		double half = myPow(x, n / 2);
 
+		// 处理奇数和偶数的情况
 		return n % 2 == 0 ? half * half : half * half * x;
 	}
+	
+	
 
 	public double myPow3(double x, int n) {
 		if (n == 0)
