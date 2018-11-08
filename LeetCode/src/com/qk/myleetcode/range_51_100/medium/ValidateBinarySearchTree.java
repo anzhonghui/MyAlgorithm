@@ -102,7 +102,7 @@ public class ValidateBinarySearchTree {
 	}
 
 	/**
-	 * 比较明了
+	 * 比较明了，类似DFS
 	 * @param root
 	 * @param minVal
 	 * @param maxVal
