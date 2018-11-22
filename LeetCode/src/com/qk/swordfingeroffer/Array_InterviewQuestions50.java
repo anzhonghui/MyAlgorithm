@@ -8,7 +8,7 @@ import org.junit.Test;
  * @Author : huihui
  * @Date : Create in 2018年11月7日
  */
-public class InterviewQuestions50 {
+public class Array_InterviewQuestions50 {
 
 	/**
 	 * @Description:
