@@ -4,9 +4,10 @@ import org.junit.Test;
 
 /**
  * @Description : 
- * 面试题18：
- * 		1.删除指定的节点（单项链表）
- *      2.删除重复的节点
+ * 面试题22：
+ * 		1.链表中倒数第k个节点
+ * 		2.求链表的中间节点（没有用代码实现）
+ * 			思路：两个指针，一个指针每次走一步，另一个每次走两步，当第二个节点到达尾部时，说明第一个指针到了中间节点
  * @Author : huihui
  * @Date : Create in 2018年11月7日
  */
@@ -14,11 +15,9 @@ public class LinkedList_InterviewQuestions18 {
 
 	/**
 	 * @Description:
-	 * @Programme：方案：通过复制的方式，剔除，是时间复杂度为O(1)
-	 * 处理三种情况：
-	 * 1.要删除的节点不是尾节点
-	 * 2.只有一个节点（Java无法处理这种情况，需要加一个头结点）
-	 * 3.要删除的节点是尾节点
+	 * @Programme：方案：通过多创建一个临时链表的方法
+	 * 1.链表a移动k个后
+	 * 2.链表a跟临时链表b同时移动，直到链表a为空
 	 */
 	@Test
 	public void MyTest() {
@@ -26,145 +25,34 @@ public class LinkedList_InterviewQuestions18 {
 		listNode.next = new ListNode(1);
 		listNode.next.next = new ListNode(2);
 		listNode.next.next.next = new ListNode(3);
-
-		deleteNode(listNode, listNode.next);
-		System.out.println(listNode.toString());
-		deleteNode(listNode, listNode.next);
-		System.out.println(listNode.toString());
-		deleteNode(listNode, listNode.next);
-		System.out.println(listNode.toString());
-		deleteNode(listNode, listNode);
-		System.out.println(listNode.toString());
-	}
-
-	/**
-	 * 删除指定的节点
-	 * @param listNode
-	 * @param deleteNode
-	 */
-	public void deleteNode(ListNode listNode, ListNode deleteNode) {
-
-		// 处理各种非法情况
-		if (listNode == null || deleteNode == null) {
-			return;
-		}
-
-		// 1.要删除的节点不是尾节点
-		if (deleteNode.next != null) {
-			System.out.println("1.要删除的节点不是尾节点");
-			deleteNode.val = deleteNode.next.val;
-			deleteNode.next = deleteNode.next.next;
-		}
-
-		// 2.只有一个节点
-		else if (listNode == deleteNode) {
-			System.out.println("2.只有一个节点");
-			listNode = null;
-		}
-
-		// 3.要删除的节点是尾节点
-		else {
-			System.out.println("3.要删除的节点是尾节点");
-			while (listNode.next != deleteNode) {
-				listNode = listNode.next;
-			}
-
-			listNode.next = null;
-		}
-
-	}
-
-	/**
-	 * @Description:
-	 * @Example:
-	 * @Pragramme:
-	 */
-	@Test
-	public void MyTest2() {
-		// 测试正常情况
-		ListNode listNode = new ListNode(0);
-		listNode.next = new ListNode(1);
-		listNode.next.next = new ListNode(2);
-		listNode.next.next.next = new ListNode(2);
-		listNode.next.next.next.next = new ListNode(3);
+		listNode.next.next.next.next = new ListNode(4);
+		listNode.next.next.next.next.next = new ListNode(5);
 		
-		System.out.println(deleteDuplication(listNode).toString());
-		
-		// 测试重复的节点在头部
-		ListNode listNode2 = new ListNode(0);
-		listNode2.next = new ListNode(0);
-		listNode2.next.next = new ListNode(2);
-		listNode2.next.next.next = new ListNode(2);
-		listNode2.next.next.next.next = new ListNode(3);
-		
-		System.out.println(deleteDuplication(listNode2).toString());
-		
-		// 测试重复的节点在尾部
-		ListNode listNode3 = new ListNode(0);
-		listNode3.next = new ListNode(1);
-		listNode3.next.next = new ListNode(2);
-		listNode3.next.next.next = new ListNode(2);
-		listNode3.next.next.next.next = new ListNode(3);
-		listNode3.next.next.next.next.next = new ListNode(3);
-		
-		System.out.println(deleteDuplication(listNode3).toString());
-		
-		// 测试相隔的重复节点
-		ListNode listNode4 = new ListNode(0);
-		listNode4.next = new ListNode(0);
-		listNode4.next.next = new ListNode(1);
-		listNode4.next.next.next = new ListNode(2);
-		listNode4.next.next.next.next = new ListNode(2);
-		listNode4.next.next.next.next.next = new ListNode(3);
-		
-		System.out.println(deleteDuplication(listNode4).toString());
+		System.out.println(findKthToTail(listNode, 3).val);
+		System.out.println(findKthToTail(listNode, 7));
+		System.out.println(findKthToTail(listNode, 6).val);
+		System.out.println(findKthToTail(listNode, 1).val);
+
 	}
 	
-	/**
-	 * 删除重复的节点
-	 * 1.记录上一个节点（关键，上一个节点指向一开始的head）
-	 * 2.获取下一个节点，判断是否需要删除
-	 * 3.不需要，跳过
-	 * 4.需要，删除
-	 * @param listNode
-	 */
-	public ListNode deleteDuplication(ListNode listNode) {
-		ListNode head = new ListNode(0);
-		head.next = listNode;
-		// 用于记录上一节点（一开始指向头指针）
-		ListNode pre = head;
-		
-		while (listNode != null) {
-			// 当前节点的下一个节点
-			ListNode next = listNode.next;
-			// 是否删除
-			boolean needDelete = false;
-			
-			// 判断是否需要删除节点
-			if(next != null && next.val == listNode.val) {
-				needDelete = true;
-			}
-			
-			// 不需要，跳过
-			if(!needDelete) {
-				// 记录上一个节点，当前节点后移
-				pre = listNode;
-				listNode = listNode.next;
-			}
-			// 需要，删除节点，直到没有重复节点
-			else {
-				// 记录重复节点的值
-				int val = listNode.val;
-				// 递归删除
-				while(listNode != null && listNode.val == val) {
-					listNode = listNode.next;
-				}
-				pre.next = listNode;
-			}
+	public ListNode findKthToTail(ListNode listNode, int k) {
+		if(listNode == null) {
+			return null;
 		}
 		
-		return head.next;
+		ListNode temp = listNode;
+		for (int i = 0; i < k; ++i) {
+			if(listNode == null) {
+				return null;
+			}
+			listNode = listNode.next;
+		}
 		
+		while(listNode != null) {
+			temp = temp.next;
+			listNode = listNode.next;
+		}
+		
+		return temp;
 	}
-
 }
