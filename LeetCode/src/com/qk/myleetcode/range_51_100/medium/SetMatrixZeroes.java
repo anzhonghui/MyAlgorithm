@@ -5,7 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
-
+/**
+ * @Description : Set Matrix Zeroes
+ * 二维数组中如果某一位置值为0，他的行和列都设置成0
+ * ---------------------------------
+ * @Author : huihui
+ * @Date : Create in 2018年12月12日
+ */
 public class SetMatrixZeroes {
 
 	/**
