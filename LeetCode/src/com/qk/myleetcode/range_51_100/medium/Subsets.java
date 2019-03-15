@@ -6,6 +6,11 @@ import java.util.List;
 
 import org.junit.Test;
 
+/**
+ * @Description : 求给定数组的自己，数组不包含重复元素
+ * @Author : huihui
+ * @Date : Create in 2019年3月7日
+ */
 public class Subsets {
 
 	/**
